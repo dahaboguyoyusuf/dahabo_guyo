@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>EA Practice Desk</title>
+<style>
+:root{--bg:#eef1f5;--sf:#fff;--tx:#17212b;--mu:#5d6b79;--bd:#d3dae2;--ac:#2b5fd9;--ac2:#e3ebfb;--ur:#c4392d;--no:#a86a0c;--lo:#6b7885;color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#10161d;--sf:#192330;--tx:#e6ebf0;--mu:#93a1b0;--bd:#2c3a49;--ac:#7ba2ff;--ac2:#1f2f50;--ur:#ff8a7c;--no:#e3b25a;--lo:#9aa7b4;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#10161d;--sf:#192330;--tx:#e6ebf0;--mu:#93a1b0;--bd:#2c3a49;--ac:#7ba2ff;--ac2:#1f2f50;--ur:#ff8a7c;--no:#e3b25a;--lo:#9aa7b4;color-scheme:dark}
+*,*::before,*::after{box-sizing:inherit}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--tx);font:15px/1.5 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+header{padding:20px 16px 0;max-width:1100px;margin:0 auto}
+h1{font:700 26px/1.15 Georgia,"Times New Roman",serif;margin:0 0 4px}
+.sub{color:var(--mu);margin:0 0 12px;max-width:70ch}
+#st{display:flex;gap:16px;flex-wrap:wrap;color:var(--mu);font-size:14px}
+#st b{color:var(--tx)}
+nav{display:flex;gap:4px;margin:14px 0 0;border-bottom:1px solid var(--bd);align-items:end}
+.tab{background:none;border:0;border-bottom:3px solid transparent;padding:10px 14px;font:inherit;color:var(--mu);cursor:pointer}
+.tab.on{color:var(--tx);border-color:var(--ac);font-weight:600}
+#rs{margin-left:auto;background:none;border:0;color:var(--mu);cursor:pointer;font:inherit;font-size:13px;text-decoration:underline}
+main{max-width:1100px;margin:0 auto;padding:16px}
+button,select,input,textarea{font:inherit;color:var(--tx)}
+button:focus-visible,select:focus-visible,input:focus-visible,textarea:focus-visible{outline:2px solid var(--ac);outline-offset:2px}
+.mail{display:grid;grid-template-columns:minmax(240px,340px) 1fr;gap:16px}
+@media(max-width:760px){.mail{grid-template-columns:1fr}}
+.list{background:var(--sf);border:1px solid var(--bd);border-radius:8px;max-height:560px;overflow:auto}
+.row{display:block;width:100%;text-align:left;background:none;border:0;border-bottom:1px solid var(--bd);border-left:4px solid transparent;padding:10px 12px;cursor:pointer}
+.row.on{background:var(--ac2)}
+.row.Urgent{border-left-color:var(--ur)}.row.Normal{border-left-color:var(--no)}.row.Low{border-left-color:var(--lo)}
+.fr{display:block;font-weight:600;font-size:14px}.sj{display:block;color:var(--mu);font-size:14px}
+.tg i{font-style:normal;font-size:12px;border:1px solid var(--bd);border-radius:4px;padding:0 6px;margin:4px 4px 0 0;display:inline-block}
+.pane{background:var(--sf);border:1px solid var(--bd);border-radius:8px;padding:16px}
+.pane h2{font:700 20px/1.25 Georgia,serif;margin:0 0 2px}
+.mu{color:var(--mu);margin:0 0 10px}
+h4{margin:18px 0 6px;font-size:14px}
+.bt{display:flex;gap:6px;flex-wrap:wrap}
+.bt button,.go{background:var(--sf);border:1px solid var(--bd);border-radius:6px;padding:6px 12px;cursor:pointer}
+.bt button.on{background:var(--ac);border-color:var(--ac);color:#fff}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]) .bt button.on{color:#10161d}}
+.go{background:var(--ac);border-color:var(--ac);color:#fff;font-weight:600}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]) .go{color:#10161d}}
+textarea,select,input{width:100%;background:var(--bg);border:1px solid var(--bd);border-radius:6px;padding:8px;margin:0 0 8px}
+textarea{min-height:90px}
+.ok{margin-top:14px;padding:8px 10px;background:var(--ac2);border-radius:6px;font-size:14px}
+.add{display:grid;grid-template-columns:2fr 1fr auto;gap:8px;margin-bottom:12px;align-items:start}
+.add input,.add select{margin:0}
+@media(max-width:600px){.add{grid-template-columns:1fr}}
+.bd{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+@media(max-width:700px){.bd{grid-template-columns:1fr}}
+.col{background:var(--sf);border:1px solid var(--bd);border-radius:8px;padding:10px;min-height:140px}
+.col h4{margin:0 0 8px}
+.card{border:1px solid var(--bd);border-radius:6px;padding:8px;margin-bottom:8px;background:var(--bg)}
+.card small{display:block;color:var(--mu);margin:2px 0 6px}
+.card .bt button{padding:2px 8px}
+.wk{overflow-x:auto;background:var(--sf);border:1px solid var(--bd);border-radius:8px}
+table{border-collapse:collapse;width:100%;min-width:620px}
+th,td{border:1px solid var(--bd);padding:4px 6px;font-size:13px;height:40px;vertical-align:top}
+th{background:var(--bg);font-weight:600}
+td.t{color:var(--mu);width:56px}
+td.fx{background:var(--bg);color:var(--mu)}
+td.us{background:var(--ac2)}
+td.us button{float:right;background:none;border:0;cursor:pointer;color:var(--mu)}
+.bk{display:grid;grid-template-columns:2fr 1fr auto;gap:8px;margin-top:12px}
+.bk input,.bk select{margin:0}
+@media(max-width:600px){.bk{grid-template-columns:1fr}}
+footer{max-width:1100px;margin:0 auto;padding:0 16px 24px;color:var(--mu);font-size:13px}
+</style></head><body>
+<header>
+<h1>EA Practice Desk</h1>
+<p class="sub">You are the executive assistant to Amara Okoye, CEO of Brightpath Logistics. Work through her inbox, hand tasks to the team, and keep her week clear. Everything here is fictional.</p>
+<div id="st"></div>
+<nav><button class="tab" data-t="inbox">Inbox</button><button class="tab" data-t="board">Task board</button><button class="tab" data-t="cal">Calendar</button><button class="tab" data-t="sum">Summary</button><button id="rs" onclick="reset()">Reset desk</button></nav>
+</header>
+<main id="v"></main>
+<footer>Sample project for portfolio use. All names, emails and companies are invented.</footer>
+<script>
+const E=[
+["Marcus Bell · Investor Relations","Follow-up call this week?","Hi, could Amara do 30 minutes with us on Tuesday at 10am? It’s the only slot our partner has free."],
+["Daniel Kimani · Finance","Q4 budget needs sign-off","The Q4 budget is ready for Amara’s approval. We need it signed by Friday to release funds."],
+["Gloria Tan · Novaterra (client)","Contract renewal questions","We’d like to renew in January but have three questions on pricing. Can someone call me this week?"],
+["LogiWeekly","Your weekly industry digest","Top stories in freight, customs changes and fuel prices. Read online."],
+["Priya Shah · Operations","Warehouse delay at Mombasa","Two containers are stuck at customs. Amara should know before the Novaterra call. Decision needed today."],
+["Skyline Travel","Lagos trip: flight options","We found three flights for 14 March. Please confirm Amara’s preferred time so we can hold the seats."],
+["Sam Otieno · IT","New password policy","All staff must switch to the new password manager by the 30th. No action needed from Amara."],
+["Leo Mwangi · Marketing","Press release draft for approval","Attached is the draft announcing our new route. Amara’s approval is needed before it goes out Thursday."],
+["Dr. Hassan’s Clinic","Appointment reminder","Reminder: Amara’s appointment is Wednesday at 14:00. Reply to confirm or reschedule."],
+["Office Supplies Co.","Invoice #4471 overdue","Our records show invoice #4471 is 20 days overdue. Please arrange payment."],
+["HR Team","Interview panel: Head of Sales","We need Amara on the final panel. Interviews run for 1 hour; any afternoon next week works."],
+["Prize Center","You’ve won a gift card!!","Click here to claim your reward before midnight."],
+["Joyce Nandi · Board member","Quick chat when possible","Could we find 30 minutes this week? Nothing urgent, I’d like to hear her thoughts on the expansion."],
+["LogiSummit Events","Keynote speaker invitation","We’d love Amara to speak at our June conference. Please reply by the end of the month."],
+["Daniel Kimani · Finance","Expense report: Q3 trip","Amara’s Q3 travel expenses are attached for approval. Receipts included."],
+["Priya Shah · Operations","Monthly ops review","Can we book 45 minutes with Amara for the ops review? Any day except Monday."],
+["Gloria Tan · Novaterra (client)","Late delivery complaint","Our last shipment arrived four days late. This is unacceptable and we need a response today."],
+["Tunde Okoye · Personal","Friday dinner reservation","Can you move our Friday dinner to 19:30? The restaurant said they have space."],
+["Legal Counsel","NDA for signature","The NDA with Harbor Freight is ready. Amara’s signature is needed by Thursday."],
+["Talent Scout","Exciting opportunity for Amara","I’m recruiting for a role at a competitor and would love to speak with her."]];
+const P=["Daniel (Finance)","Priya (Operations)","Leo (Marketing)","Sam (IT)","HR Team"];
+const D=["Mon","Tue","Wed","Thu","Fri"],H=[9,10,11,12,13,14,15,16];
+const FIX=[[0,9,"Leadership stand-up"],[0,13,"Board prep"],[1,10,"Investor call"],[2,9,"Leadership stand-up"],[2,14,"Site visit"],[3,11,"Client lunch"],[4,9,"Leadership stand-up"],[4,15,"All-hands"]];
+const $=s=>document.querySelector(s),esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+let S={m:{},t:[],ev:[]},tab="inbox",sel=0,mode="";
+try{S=JSON.parse(localStorage.getItem("eadesk"))||S}catch(e){}
+const save=()=>{try{localStorage.setItem("eadesk",JSON.stringify(S))}catch(e){}};
+const busy=(d,h)=>FIX.some(f=>f[0]==d&&f[1]==h)||S.ev.some(e=>e.d==d&&e.h==h);
+const slots=()=>{let o="";D.forEach((n,d)=>H.forEach(h=>{if(!busy(d,h))o+=`<option value="${d}-${h}">${n} ${h}:00</option>`}));return o};
+function mark(k,v){S.m[sel]=Object.assign(S.m[sel]||{},{[k]:v});mode="";save();render()}
+function act(a){if(a=="Archive")mark("a",a);else{mode=a;render()}}
+function reply(){S.m[sel]=Object.assign(S.m[sel]||{},{a:"Reply",n:"Draft saved"});S.m[sel].d=$("#rp").value;mode="";save();render()}
+function dele(){const w=$("#who").value;S.t.push({t:E[sel][1],who:w,c:0});S.m[sel]=Object.assign(S.m[sel]||{},{a:"Delegate",n:"Delegated to "+w+" and added to the task board"});mode="";save();render()}
+function sched(){const[d,h]=$("#sl").value.split("-");S.ev.push({d:+d,h:+h,t:"Re: "+E[sel][1]});S.m[sel]=Object.assign(S.m[sel]||{},{a:"Schedule",n:"Booked "+D[d]+" "+h+":00 on the calendar"});mode="";save();render()}
+function inbox(){
+const l=E.map((e,i)=>{const m=S.m[i]||{};return`<button class="row ${m.p||""}${i==sel?" on":""}" onclick="sel=${i};mode='';render()"><span class="fr">${esc(e[0].split(" · ")[0])}</span><span class="sj">${esc(e[1])}</span><span class="tg">${m.p?`<i>${m.p}</i>`:""}${m.a?`<i>${m.a}</i>`:""}</span></button>`}).join("");
+const e=E[sel],m=S.m[sel]||{};
+let p="";
+if(mode=="Reply")p=`<textarea id="rp" placeholder="Write your reply on Amara’s behalf…">${esc(m.d||"")}</textarea><button class="go" onclick="reply()">Save reply</button>`;
+if(mode=="Delegate")p=`<select id="who">${P.map(x=>`<option>${x}</option>`).join("")}</select><button class="go" onclick="dele()">Delegate task</button>`;
+if(mode=="Schedule")p=`<select id="sl">${slots()}</select><button class="go" onclick="sched()">Book time</button>`;
+return`<div class="mail"><div class="list">${l}</div><div class="pane"><h2>${esc(e[1])}</h2><p class="mu">From ${esc(e[0])}</p><p>${esc(e[2])}</p>
+<h4>How urgent is it?</h4><div class="bt">${["Urgent","Normal","Low"].map(x=>`<button class="${m.p==x?"on":""}" onclick="mark('p','${x}')">${x}</button>`).join("")}</div>
+<h4>What will you do?</h4><div class="bt">${["Reply","Delegate","Schedule","Archive"].map(x=>`<button class="${(m.a==x||mode==x)?"on":""}" onclick="act('${x}')">${x}</button>`).join("")}</div>
+<div style="margin-top:10px">${p}</div>${m.n?`<div class="ok">${esc(m.n)}</div>`:""}</div></div>`}
+function board(){
+const C=["To do","Doing","Done"];
+return`<form class="add" onsubmit="return addT()"><input id="nt" placeholder="New task…" required aria-label="Task name"><select id="na" aria-label="Assign to">${P.map(x=>`<option>${x}</option>`).join("")}<option>Me</option></select><button class="go">Add task</button></form>
+<div class="bd">${C.map((c,ci)=>`<div class="col"><h4>${c}</h4>${S.t.map((t,i)=>t.c==ci?`<div class="card"><b>${esc(t.t)}</b><small>${esc(t.who)}</small><div class="bt">${ci>0?`<button onclick="mv(${i},-1)" aria-label="Move back">←</button>`:""}${ci<2?`<button onclick="mv(${i},1)" aria-label="Move forward">→</button>`:""}<button onclick="S.t.splice(${i},1);save();render()" aria-label="Delete">✕</button></div></div>`:"").join("")}</div>`).join("")}</div>`}
+function addT(){S.t.push({t:$("#nt").value,who:$("#na").value,c:0});save();render();return false}
+function mv(i,d){S.t[i].c+=d;save();render()}
+function cal(){
+let r=`<tr><th></th>${D.map(d=>`<th>${d}</th>`).join("")}</tr>`;
+H.forEach(h=>{r+=`<tr><td class="t">${h}:00</td>`+D.map((n,d)=>{const f=FIX.find(x=>x[0]==d&&x[1]==h);if(f)return`<td class="fx">${f[2]}</td>`;const i=S.ev.findIndex(x=>x.d==d&&x.h==h);return i>=0?`<td class="us">${esc(S.ev[i].t)}<button onclick="S.ev.splice(${i},1);save();render()" aria-label="Remove">×</button></td>`:"<td></td>"}).join("")+"</tr>"});
+return`<div class="wk"><table>${r}</table></div><form class="bk" onsubmit="return addE()"><input id="et" placeholder="Meeting title…" required aria-label="Meeting title"><select id="es" aria-label="Time slot">${slots()}</select><button class="go">Book meeting</button></form>`}
+function addE(){const[d,h]=$("#es").value.split("-");S.ev.push({d:+d,h:+h,t:$("#et").value});save();render();return false}
+function sumTxt(){
+let t="EA PRACTICE DESK SUMMARY\n\nEMAILS\n";
+E.forEach((e,i)=>{const m=S.m[i]||{};t+=(i+1)+". "+e[1]+" ("+e[0].split(" · ")[0]+"): "+(m.p||"priority not set")+", "+(m.a||"no action")+(m.n&&m.a!="Reply"?" - "+m.n:"")+(m.d?" | My reply: "+m.d:"")+"\n"});
+t+="\nTASKS\n"+(S.t.map(x=>"- "+x.t+" ("+x.who+", "+["To do","Doing","Done"][x.c]+")").join("\n")||"none")+"\n\nMEETINGS BOOKED\n"+(S.ev.map(x=>"- "+D[x.d]+" "+x.h+":00 "+x.t).join("\n")||"none");
+return t}
+function sum(){return`<div class="pane"><h2>Your summary</h2><p class="mu">Copy this and paste it into your chat with Claude to get feedback.</p><textarea id="sm" readonly style="min-height:320px">${esc(sumTxt())}</textarea><button class="go" onclick="cp()">Copy summary</button> <span id="cm" class="mu"></span></div>`}
+function cp(){const a=$("#sm");a.select();let ok=false;try{ok=document.execCommand("copy")}catch(e){}$("#cm").textContent=ok?"Copied. Now paste it into your chat.":"Select the text above and copy it."}
+function reset(){S={m:{},t:[],ev:[]};sel=0;mode="";save();render()}
+function render(){
+const n=Object.values(S.m).filter(x=>x.p&&x.a).length;
+$("#st").innerHTML=`<span>Triaged <b>${n}/${E.length}</b></span><span>Tasks <b>${S.t.length}</b></span><span>Meetings booked <b>${S.ev.length}</b></span>`;
+document.querySelectorAll(".tab").forEach(b=>b.classList.toggle("on",b.dataset.t==tab));
+$("#v").innerHTML=tab=="inbox"?inbox():tab=="board"?board():tab=="cal"?cal():sum()}
+document.querySelectorAll(".tab").forEach(b=>b.onclick=()=>{tab=b.dataset.t;render()});
+render();
+</script></body></html>
